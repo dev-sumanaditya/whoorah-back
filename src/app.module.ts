@@ -1,10 +1,12 @@
+import { FirebaseAdminModule } from '@aginix/nestjs-firebase-admin';
 import { MiddlewareConsumer, Module, NestModule } from '@nestjs/common';
-import { ConfigModule, ConfigService, ConfigType } from '@nestjs/config';
+import { ConfigModule, ConfigType } from '@nestjs/config';
+import * as admin from 'firebase-admin';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
+import { AuthModule } from './auth/auth.module';
 import appConfig from './config/config';
-import { FirebaseAdminModule } from '@aginix/nestjs-firebase-admin';
-import * as admin from 'firebase-admin';
+import { StreamModule } from './stream/stream.module';
 
 @Module({
   imports: [
@@ -20,6 +22,9 @@ import * as admin from 'firebase-admin';
         credential: admin.credential.cert(config.firebase.path),
       }),
     }),
+
+    AuthModule,
+    StreamModule,
   ],
   controllers: [AppController],
   providers: [AppService],

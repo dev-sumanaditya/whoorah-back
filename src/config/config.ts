@@ -5,4 +5,7 @@ export default registerAs('config', () => ({
   firebase: {
     path: process.env.FIREBASE_CONFIG_PATH,
   },
+  streamToken: process.env.STREAM_API_KEY,
+  streamId: process.env.STREAM_ID,
+  host: process.env.HOST,
 }));
